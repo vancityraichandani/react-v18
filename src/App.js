@@ -5,14 +5,19 @@ import { useState, useEffect, useRef } from 'react';
 
 function App() {
   // const [st, setSt] = useState({ k1: 'Key1', k2: 'Key2' })
-  const [a, sa] = useState(0)
+  const [a, sa] = useState('')
+  const [ct, sct] = useState(0)
   const c = useRef(1);
 
   console.log('render');
 
+  useEffect(()=>{
+    sct(ct => ct + 1);
+  })
+
   function handleClick() {
-    console.log('ref change');
-    c.current += 1;
+    // console.log('ref change');
+    // c.current += 1;
   }
   function handlesc() {
     console.log('state change');
@@ -22,7 +27,9 @@ function App() {
   return (
     <>
       <div className="App">
-        <p onClick={handleClick} className="para">{c.current}</p>
+        <input value={a} type="text"/>
+        <p onClick={handleClick} className="para">{ct}</p>
+        {/* <p onClick={handleClick} className="para">{c.current}</p> */}
         <p onClick={handlesc} className="para">{a}</p>
         <Comp1 />
       </div>
